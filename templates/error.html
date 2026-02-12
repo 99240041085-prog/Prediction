@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error - Student Grade Predictor</title>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0f172a;
+            color: #f8fafc;
+            display: flex;
+            align_items: center;
+            justify_content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .error-container {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            max-width: 500px;
+        }
+
+        h1 {
+            color: #ef4444;
+            margin-top: 0;
+        }
+
+        p {
+            color: #94a3b8;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.75rem 1.5rem;
+            background: #6366f1;
+            color: white;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            transition: background 0.2s;
+        }
+
+        .btn:hover {
+            background: #4f46e5;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="error-container">
+        <h1>Configuration Error</h1>
+        <p>{{ message }}</p>
+        <a href="/" class="btn">Try Again</a>
+    </div>
+</body>
+
+</html>

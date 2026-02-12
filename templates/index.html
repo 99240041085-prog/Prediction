@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Student Grade Predictor</title>
+    <meta name="description"
+        content="Predict student academic performance using AI-powered machine learning models. Analyze AI tool usage patterns and study habits.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+    <!-- Animated background orbs -->
+    <div class="bg-orb bg-orb-1"></div>
+    <div class="bg-orb bg-orb-2"></div>
+    <div class="bg-orb bg-orb-3"></div>
+
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-icon">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                    <circle cx="20" cy="20" r="18" stroke="url(#grad1)" stroke-width="2.5" fill="none" />
+                    <path d="M14 22L18 26L26 16" stroke="url(#grad1)" stroke-width="2.5" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <defs>
+                        <linearGradient id="grad1" x1="0" y1="0" x2="40" y2="40">
+                            <stop offset="0%" stop-color="#6366f1" />
+                            <stop offset="100%" stop-color="#a855f7" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            <h1>Student Grade Predictor</h1>
+            <p class="subtitle">AI-powered academic performance analysis</p>
+        </header>
+
+        <!-- Main Form -->
+        <form id="predictionForm" class="form-grid" autocomplete="off">
+            <!-- AI Tools Section -->
+            <div class="section-label">
+                <span class="section-icon">🤖</span>
+                AI Usage Profile
+            </div>
+
+            <div class="form-group glass-card">
+                <label for="ai_tools_used">AI Tool Used</label>
+                <div class="select-wrapper">
+                    <select id="ai_tools_used" name="ai_tools_used" required>
+                        {% for tool in tools %}
+                        <option value="{{ tool }}">{{ tool }}</option>
+                        {% endfor %}
+                    </select>
+                    <div class="select-arrow">
+                        <svg width="12" height="8" viewBox="0 0 12 8">
+                            <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group glass-card">
+                <label for="ai_usage_purpose">AI Usage Purpose</label>
+                <div class="select-wrapper">
+                    <select id="ai_usage_purpose" name="ai_usage_purpose" required>
+                        {% for purpose in purposes %}
+                        <option value="{{ purpose }}">{{ purpose }}</option>
+                        {% endfor %}
+                    </select>
+                    <div class="select-arrow">
+                        <svg width="12" height="8" viewBox="0 0 12 8">
+                            <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group glass-card">
+                <label for="ai_dependency_score">
+                    AI Dependency Score
+                    <span class="range-value" id="ai_dependency_score_val">5</span>
+                </label>
+                <input type="range" id="ai_dependency_score" name="ai_dependency_score" min="1" max="10" value="5"
+                    step="1">
+                <div class="range-labels"><span>Low (1)</span><span>High (10)</span></div>
+            </div>
+
+            <div class="form-group glass-card">
+                <label for="ai_generated_content_percentage">
+                    AI Generated Content %
+                    <span class="range-value" id="ai_generated_content_percentage_val">50</span>
+                </label>
+                <input type="range" id="ai_generated_content_percentage" name="ai_generated_content_percentage" min="0"
+                    max="100" value="50" step="1">
+                <div class="range-labels"><span>0%</span><span>100%</span></div>
+            </div>
+
+            <!-- Academic Section -->
+            <div class="section-label">
+                <span class="section-icon">📚</span>
+                Academic Performance
+            </div>
+
+            <div class="form-group glass-card">
+                <label for="last_exam_score">
+                    Last Exam Score
+                    <span class="range-value" id="last_exam_score_val">50</span>
+                </label>
+                <input type="range" id="last_exam_score" name="last_exam_score" min="20" max="100" value="50" step="1">
+                <div class="range-labels"><span>20</span><span>100</span></div>
+            </div>
+
+            <div class="form-group glass-card">
+                <label for="ai_usage_hours">
+                    AI Usage (Hours/Day)
+                    <span class="range-value" id="ai_usage_hours_val">1.0</span>
+                </label>
+                <input type="range" id="ai_usage_hours" name="ai_usage_hours" min="0" max="10" value="1.0" step="0.5">
+                <div class="range-labels"><span>0 hrs</span><span>10 hrs</span></div>
+            </div>
+
+            <!-- Study Habits Section -->
+            <div class="section-label">
+                <span class="section-icon">💡</span>
+                Study & Lifestyle
+            </div>
+
+            <div class="form-group glass-card">
+                <label for="study_consistency_index">
+                    Study Consistency
+                    <span class="range-value" id="study_consistency_index_val">5.0</span>
+                </label>
+                <input type="range" id="study_consistency_index" name="study_consistency_index" min="1" max="10"
+                    value="5" step="0.1">
+                <div class="range-labels"><span>Irregular (1)</span><span>Very Consistent (10)</span></div>
+            </div>
+
+            <div class="form-group glass-card">
+                <label for="sleep_hours">
+                    Sleep Hours
+                    <span class="range-value" id="sleep_hours_val">7.0</span>
+                </label>
+                <input type="range" id="sleep_hours" name="sleep_hours" min="4" max="9" value="7" step="0.1">
+                <div class="range-labels"><span>4 hrs</span><span>9 hrs</span></div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="submit-container">
+                <button type="submit" id="predictBtn" class="predict-btn">
+                    <span class="btn-text">Predict Performance</span>
+                    <span class="btn-loader" style="display:none;">
+                        <svg class="spinner" width="20" height="20" viewBox="0 0 20 20">
+                            <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2" fill="none"
+                                stroke-dasharray="40" stroke-dashoffset="10" />
+                        </svg>
+                    </span>
+                    <span class="btn-icon">→</span>
+                </button>
+            </div>
+        </form>
+
+        <!-- Results Panel -->
+        <div id="resultsPanel" class="results-panel" style="display:none;">
+            <div class="results-header">
+                <h2>Prediction Results</h2>
+                <div class="results-divider"></div>
+            </div>
+
+            <div class="results-grid">
+                <!-- Final Score WITH AI -->
+                <div class="result-card glass-card" id="withAiCard">
+                    <div class="result-icon">🤖</div>
+                    <div class="result-label">Score with AI</div>
+                    <div class="result-value" id="withAiValue">--</div>
+                    <div class="result-bar-container">
+                        <div class="result-bar" id="withAiBar"></div>
+                    </div>
+                    <div class="result-sub" id="withAiPassed">--</div>
+                </div>
+
+                <!-- Last Exam Score (Was: Score WITHOUT AI) -->
+                <div class="result-card glass-card" id="lastExamCard">
+                    <div class="result-icon">📄</div>
+                    <div class="result-label">Last Exam Score</div>
+                    <div class="result-value" id="lastExamValue">--</div>
+                    <div class="result-bar-container">
+                        <div class="result-bar" id="lastExamBar"></div>
+                    </div>
+                    <!-- Removed passed status for last exam as it's past data -->
+                </div>
+
+                <!-- AI Impact -->
+                <div class="result-card glass-card" id="impactCard">
+                    <div class="result-icon">⚡</div>
+                    <div class="result-label">AI Impact</div>
+                    <div class="result-value" id="impactValue">--</div>
+                    <div class="impact-indicator" id="impactIndicator"></div>
+                    <div class="result-sub" id="impactSub">--</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+
+</html>
